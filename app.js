@@ -4,6 +4,13 @@ const Blog = require("./model/blogModel");
 const mongoConnection = require("./database/db");
 require("dotenv").config();
 const { multer, storage } = require("./utils/multerConfig");
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+  })
+);
 
 const upload = multer({ storage: storage });
 
