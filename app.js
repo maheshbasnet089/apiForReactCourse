@@ -60,6 +60,20 @@ app.get("/blogs", async (req, res) => {
     });
   }
 });
+app.get("/blogs/:id", async (req, res) => {
+  try {
+    const blogs = await Blog.findById(req.params.id);
+    res.json({
+      status: 200,
+      blogs: blogs,
+    });
+  } catch (e) {
+    res.json({
+      status: 400,
+      message: e.message,
+    });
+  }
+});
 app.delete("/blogs/:id", async (req, res) => {
   try {
     const blog = await Blog.findByIdAndDelete(req.params.id);
